@@ -9,15 +9,16 @@ let isTest = false
 // TODO: Create a function called `readLocalStorage` that reads from local storage and returns the data. If no data exists, return an empty array. It does not need to take any arguments, It just needs to return the blogs stored in local storage as an array. Please use the key 'blogs' for storing and retrieving your blogs to/from local storage
 // BRUNSON TODO: This needs Testing... doesn't work yet.
 function readLocalStorage () {
+  let blogs = [];
   console.log ("INFO: readLocalStorage function was called.")
   console.log(`INFO: localStorage length is currently ${localStorage.length}`);
   
-  let blogs = [];
-  if (localStorage.length === 0) {
+   if (localStorage.length === 0) {
     return blogs;
   }
   else{
-
+    blogs = localStorage.getItem('blogs');
+    console.log(`blogs as read are ${blogs}`);
   }
 }
 
@@ -26,9 +27,16 @@ function readLocalStorage () {
 // BRUNSON TODO: Needs testing... seems to be getting called on start by one of the testing scripts?
 function storeLocalStorage() {
   console.log ("INFO: storeLocalStorage function was called");
-  console.log (`INFO: blog was received as ${blog}`);
+  let blog = [
+    {
+        username: username.value,
+        title: title.value,
+        content: content.value
+    }
+]
+  console.log (`INFO: blog was received as ${JSON.stringify(blog)}`);
   console.log (`INFO: localStorage length prior to setting is ${localStorage.length}`);
-  localStorage.set('blogs', JSON.stringify(blog));
+  localStorage.setItem('blogs', JSON.stringify(blog));
   console.log (`INFO: localStorage length after setting is is ${localStorage.length}`);
 }
 
