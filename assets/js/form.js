@@ -16,10 +16,16 @@ function saveBlog(event) {
        error.textContent = "Please complete the form."
        console.log("ERROR: error has occurred This is likely because there is a missing value for the blog form.")
     }else {
-        storeLocalStorage();
+        const blog = [{
+                username: username.value,
+                title: title.value,
+                content: content.value
+            }];
+        storeLocalStorage(blog);
+        redirectPage("blog.html");
     }
 }
 
 // TODO: Add an event listener to the form on submit. Call the function to handle the form submission.
-const submitBtn = document.querySelector('#submit');
-submitBtn.addEventListener(submitBtn, saveBlog);
+const submitForm = document.querySelector('#submit');
+submitForm.addEventListener("submit", saveBlog);
