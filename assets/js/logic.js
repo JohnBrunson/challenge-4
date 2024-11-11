@@ -7,7 +7,9 @@ let blogs = [];
 
 // this is ugly. WAY too much violation of DRY. Fix this later because we're on a deadline. This is not keeping the correct "light" colors.
 //this also is not limited to clicking toggle... but seems to apply to ANY clicking. However, it is passing tests.
-addEventListener('click', () => {
+const toggleBtn = document.querySelector('#toggle');
+
+toggleBtn.addEventListener('click', () => {
     currentMode = localStorage.getItem('mode')
     if (currentMode === 'dark')
     {
