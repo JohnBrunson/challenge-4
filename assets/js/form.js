@@ -16,13 +16,15 @@ function saveBlog(event) {
        error.textContent = "Please complete the form."
        console.log("ERROR: error has occurred This is likely because there is a missing value for the blog form.")
     }else {
-        const blog = [{
+        const blog = {
                 username: username.value,
                 title: title.value,
                 content: content.value
-            }];
+            };
         storeLocalStorage(blog);
         redirectPage("blog.html");
+        // Is this why blogs isn't being read in logic.js?
+        return blog;
     }
 }
 
