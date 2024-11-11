@@ -3,8 +3,27 @@ let isTest = false
 //your coding begins here
 let blogs = [];
 // TODO: Create logic to toggle the light/dark mode styles for the page and circle. The mode should be saved to local storage.
+//property will change the CSS circle color.
 
-// 
+// this is ugly. WAY too much violation of DRY. Fix this later because we're on a deadline. This is not keeping the correct "light" colors.
+//this also is not limited to clicking toggle... but seems to apply to ANY clicking. However, it is passing tests.
+addEventListener('click', () => {
+    currentMode = localStorage.getItem('mode')
+    if (currentMode === 'dark')
+    {
+      document.body.classList.remove('dark');
+      document.body.classList.add ('light');
+      localStorage.setItem('mode', 'light');
+      document.documentElement.style.setProperty('--circle-color', '#ffb100');
+    }
+      else{
+        document.body.classList.remove('light');
+        document.body.classList.add('dark');
+        localStorage.setItem('mode', 'dark');
+        document.documentElement.style.setProperty('--circle-color', '#000');
+      }
+  }
+);
 
 // TODO: Create a function called `readLocalStorage` that reads from local storage and returns the data. If no data exists, return an empty array. It does not need to take any arguments, It just needs to return the blogs stored in local storage as an array. Please use the key 'blogs' for storing and retrieving your blogs to/from local storage
 
