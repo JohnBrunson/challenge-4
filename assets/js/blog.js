@@ -12,21 +12,21 @@ function domAppend(el, parent) {
 function noBlogPosts(){
     console.log("INFO: noBlogPosts was called.")
     const p = domAppend ('p', main);
-    console.log (`INFO: p is ${p}`);
+
     p.textContent = "No Blog posts yet..."
     
 }
 
 // TODO: Create a function called `renderBlogList` that renders the list of blog posts if they exist. If not, call the no posts function.
 function renderBlogList() {
-    blogs = readLocalStorage();
+    const blogs = readLocalStorage();
     console.log(`blogs is read by renderBlogList as ${blogs}`);
-    if (!blogs) {
+    if (!blogs || blogs.length === 0) {
         console.log(`INFO: No Blog posts were found... Calling noBlogPosts`)
         noBlogPosts();
     } else{
         console.log("INFO: There are blogs here, attempting to render.")
-
+// this is correct, just need to figure out how to properly get blogs in here.
         blogs.forEach(blog => {
             //setup the article and append
             const article = domAppend('article', main);
@@ -38,7 +38,7 @@ function renderBlogList() {
             const blockquote = domAppend('blockquote', article)
             h2.textContent = blog.title;
             blockquote.textContent = blog.content;
-            p.textContent = blog.username;
+            p.textContent = `By: ${blog.username}`;
             
 
         });
